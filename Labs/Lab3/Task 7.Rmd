@@ -1,0 +1,45 @@
+---
+title: "Task 7: Lab 3"
+author: "Sam BIllerbeck"
+date: "9/13"
+output: html_document
+runtime: shiny
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+```{r slr, echo=FALSE}
+library(ggplot2)
+# DATA
+spruce.df = read.csv("SPRUCE.csv")#MS pg478
+
+# INPUTS
+inputPanel(
+  
+  
+  selectInput("plotg", "Choose plot type",
+      list(`points` = c("Points only", "Points with linear regression", "Points with line segments")
+      )
+    )
+)
+
+renderPlot({
+  
+ g = ggplot(spruce.df, aes(x = BHDiameter, y = Height)) + geom_point() 
+
+ gsh =  g + geom_point() + geom_smooth(method="lm")
+ 
+ gsr = g + geom_point() + geom_line()
+  
+ if(input$plotg == "Points only") print(g)
+ 
+ if(input$plotg == "Points with linear regression")   print(gsh)
+ 
+ if(input$plotg == "Points with line segments")   print(gsr)
+ 
+   
+})
+```
