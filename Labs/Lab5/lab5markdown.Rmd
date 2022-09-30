@@ -9,3 +9,8 @@ output:
 date: "2022-09-16"
 ---
 
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Task 1
