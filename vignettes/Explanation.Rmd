@@ -1,0 +1,82 @@
+---
+title: "This is a package containing functions and a dataset created for the course MATH 4754"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{This is a package containing functions and a dataset created for the course MATH 4754}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(MATH4753FALLbill7368)
+```
+
+# Introduction
+
+This is a selection of 6 functions and one dataset created for the course MATH 4753 in the fall of 2022. These functions, while not created by me, were selected and documented for this package by myself. Some of them do require files or extra code not currently present in the package. 
+
+
+## Scatterhist
+
+This is a function that creates a scatterplot with additional histograms providing extra info. It is not run here because it requires the spruce dataset 
+```{r}
+#MATH4753FALLbill7368::scatterhist()
+```
+
+## Ntickets
+
+This is a function that calculates optimal passengers booked for a flight
+
+```{r}
+MATH4753FALLbill7368::ntickets(200,.02,0.95)
+```
+
+# Mynbin 
+
+This is a function to calculate a binomial distribution
+
+```{r}
+MATH4753FALLbill7368::mynbin(10,3,0.4)
+```
+# Mymaxlik
+Function for the type of distribution we want to find the MLE of. It requires creating a distribution prior to use.
+```{r}
+logbin=function(x,param) log(dbinom(x,prob=param,size=10))
+
+MATH4753FALLbill7368::mymaxlik(x=c(9,9,1,9,9,9),param=seq(0,1,length=1000),lfun=logbin,xlab=expression(pi),main="Binomial",cex.main=2)
+```
+
+# Mycltb
+
+This function uses a binomial distribution with probability p to show the central limit theorem
+```{r}
+mycltb(n=4,iter=10000,p=0.5)
+```
+
+# Myboot2
+
+This is a bootstrapping function, used here with the package dataset
+
+```{r}
+MATH4753FALLbill7368::myboot2(x=MATH4753FALLbill7368::fire$DISTANCE)
+```
+# Fire
+
+Last but not least is the FIRE dataset, which was added to the package
+It relates distance from a fire station to the cost of the damage from fires
+
+
+```{r}
+library(MATH4753FALLbill7368)
+data("fire")
+knitr::kable(head(fire))
+```
+
+
